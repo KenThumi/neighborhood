@@ -1,0 +1,66 @@
+{% extends '../base.html'%}
+
+{% block content %}
+<div class="container my-2">
+    <div class="row">
+     
+        <div class="col-md-6 offset-md-3">
+            <ul class="list-group mt-3">
+                <li class="list-group-item">
+                    <h3> {{user.username| title}} </h3>
+                </li>
+                <li class="list-group-item">
+                    Email <span class="text-muted">
+                    <p>{{user.email}}</p> 
+                    </span>
+                </li>
+                {% if user.profile %}
+
+                <li class="list-group-item">
+                    National ID <span class="text-muted">
+                    <p>{{user.profile.nat_id}}</p> 
+                    </span>
+                </li>
+    
+                {%else%}
+                
+                    <li class="list-group-item">
+                          <p>No ID given</p>
+                    </li>
+                    <br>
+                    <li class="list-group-item ">
+                        <a href="{% url 'addprof' user.id%}" class="btn btn-sm btn-outline-warning mx-auto d-block my-2">
+                            <i class="fas fa-plus-circle mr-1" aria-hidden="true"></i>
+                            Add National ID </a>
+                    </li>
+                
+    
+                {% endif %}
+                
+            </ul>
+            
+       
+        </div>
+    
+    </div>
+    <div class="row">
+        <!-- user post -->
+             <div class="col-12">
+                <h4 class="text-center mt-3">
+                    Lorem
+                </h4>
+                <hr>
+             </div>
+            
+          
+
+       
+        
+  
+
+    
+
+</div>
+ 
+</div>
+{% endblock %}

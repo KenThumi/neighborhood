@@ -1,4 +1,4 @@
-from events.forms import UserRegisterForm
+from events.forms import ProfileForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
@@ -27,5 +27,34 @@ def register(request):
 
     return render(request,'registration/register.html',{'form':form})
 
+# @login_required
+def profile(request):
+    user = request.user
+
+    return render(request,'profile/profile.html', {'user':user})
 
 
+def addprof(request,id):
+    form = ProfileForm()
+
+    # if request.method == 'POST':
+    #     form = ProfileForm(request.POST,request.FILES)
+
+    #     file_to_upload = request.FILES['profile_photo']
+
+    #     if form.is_valid():
+    #         upload_result = cloudinary.uploader.upload(file_to_upload)
+    #         new_result = remove_prefix(upload_result['secure_url'],'https://res.cloudinary.com/dtw9t2dom/')
+
+    #         profile = Profile(profile_photo=new_result,
+    #                           bio=form.cleaned_data['bio'],
+    #                           user=request.user)
+
+    #         profile.save_profile()
+
+    #         messages.success(request, 'Successful profile creation.')
+    #         return redirect('profile')
+
+    ctx = {'form':form}
+
+    return render(request,'profile/update.html',ctx)
