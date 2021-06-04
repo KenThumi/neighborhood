@@ -1,3 +1,4 @@
+from events.models import Profile
 from events.forms import ProfileForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
@@ -37,23 +38,19 @@ def profile(request):
 def addprof(request,id):
     form = ProfileForm()
 
-    # if request.method == 'POST':
-    #     form = ProfileForm(request.POST,request.FILES)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
 
-    #     file_to_upload = request.FILES['profile_photo']
+        if form.is_valid():
 
-    #     if form.is_valid():
-    #         upload_result = cloudinary.uploader.upload(file_to_upload)
-    #         new_result = remove_prefix(upload_result['secure_url'],'https://res.cloudinary.com/dtw9t2dom/')
+            profile = Profile(
+                              nat_id=form.cleaned_data['nat_id'],
+                              user=request.user)
 
-    #         profile = Profile(profile_photo=new_result,
-    #                           bio=form.cleaned_data['bio'],
-    #                           user=request.user)
+            profile.save()
 
-    #         profile.save_profile()
-
-    #         messages.success(request, 'Successful profile creation.')
-    #         return redirect('profile')
+            messages.success(request, 'Successful nat. ID creation.')
+            return redirect('profile')
 
     ctx = {'form':form}
 
