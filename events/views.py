@@ -15,14 +15,14 @@ def home(request):
 def register(request):
     form = UserRegisterForm()
 
-    # if request.method == 'POST':
-    #     form = UserRegisterForm(request.POST)
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
 
-    #     if form.is_valid():
-    #         form.save()
+        if form.is_valid():
+            form.save()
 
-    #         messages.success(request, 'Successful Registration.')
+            messages.success(request, 'Successful Registration.')
 
-    #         return redirect('login')
+            return redirect('home')
 
     return render(request,'registration/register.html',{'form':form})
