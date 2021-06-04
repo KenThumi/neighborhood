@@ -26,3 +26,6 @@ def register(request):
             return redirect('home')
 
     return render(request,'registration/register.html',{'form':form})
+
+
+

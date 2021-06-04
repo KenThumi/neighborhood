@@ -17,7 +17,7 @@
         
       </ul>
       {% if user.is_authenticated %}
-      <form class="form-inline my-2 my-lg-0 mx-md-auto" method="POST" action="{% url 'search' %}">
+      <form class="form-inline my-2 my-lg-0 mx-md-auto" method="POST" action="#">
         {% csrf_token %}
         <input name='search' class="form-control form-control-sm mr-sm-2" type="search" placeholder="Search project name" aria-label="Search" required>
         <button class="btn btn-outline-info btn-sm my-2 my-sm-0" type="submit">
