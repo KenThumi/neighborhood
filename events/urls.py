@@ -10,6 +10,7 @@ urlpatterns = [
     path('addprof/<int:id>',views.addprof, name='addprof'),
     path('profile/', views.profile, name='profile'),
     path('police', views.getPoliceDept, name='police'),
-    path('health', views.getHealthDept, name='health')
+    path('health', views.getHealthDept, name='health'),
+    path('depts', views.getDepts, name='depts')
 
 ]

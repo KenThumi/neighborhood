@@ -77,3 +77,14 @@ def getHealthDept(request):
     
 
     return render(request,'dept.html',ctx)
+
+
+
+def getDepts(request):
+    dpts = Business.objects.filter(location=request.user.profile.location)
+
+
+    ctx = {'dpts':dpts}
+    
+
+    return render(request,'depts.html',ctx)
