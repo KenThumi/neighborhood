@@ -48,5 +48,15 @@ class Profile(models.Model):
         return f'{self.user.username}'
 
 
+class Business(models.Model):
+    name = models.CharField(max_length=60)
+    email= models.EmailField()
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='businesses')
+    location = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,related_name='businesses')
+    
+    
+    def __str__(self):
+        return f'{self.name}'
+
 
 

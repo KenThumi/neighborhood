@@ -1,4 +1,4 @@
-from events.models import Profile
+from events.models import Business, Profile
 from events.forms import ProfileForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
@@ -56,3 +56,24 @@ def addprof(request,id):
     ctx = {'form':form}
 
     return render(request,'profile/update.html',ctx)
+
+
+def getPoliceDept(request):
+    dpt = Business.objects.filter(name__icontains='police',location=request.user.profile.location).first()
+
+
+    ctx = {'dpt':dpt}
+    
+
+    return render(request,'dept.html',ctx)
+
+
+
+def getHealthDept(request):
+    dpt = Business.objects.filter(name__icontains='health',location=request.user.profile.location).first()
+
+
+    ctx = {'dpt':dpt}
+    
+
+    return render(request,'dept.html',ctx)

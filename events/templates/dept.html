@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+
+{% block content %}
+{{block.super}}
+
+<div class="container-fluid my-2">
+
+<h3 class="text-center">
+  {{dpt.name}}
+</h3>
+<ul class="list-group mt-2">
+    <li class="list-group-item">
+        Name: <strong>
+            {{ dpt.name }}
+        </strong>
+    </li>
+    <li class="list-group-item">
+        Email: <strong>
+            {{ dpt.email }}
+        </strong>
+    </li>
+    <li class="list-group-item">
+        Neighborhood: <strong>
+            {{ dpt.location.name }},{{ dpt.location.location }}
+        </strong>
+    </li>
+</ul>
+</div>
+<!-- copyrights -->
+<div class="mt-1 text-center">
+    <small class="text-center">
+    Copyright © 2021 Neighborhood Inc. All Rights Reserved
+    </small>
+</div>
+{% endblock %}
