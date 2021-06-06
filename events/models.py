@@ -3,6 +3,20 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+class Neighborhood(models.Model):
+    name = models.CharField(max_length=60)
+    location=models.CharField(max_length=60)
+    admin = models.ForeignKey(User,on_delete=models.CASCADE,related_name='locations')
+
+
+    class Meta:
+        ordering = ["-pk"]
+
+
+    def __str__(self):
+        return f'{self.name} , {self.location}'
+
+
 class Profile(models.Model):
     
     nat_id = models.IntegerField()
@@ -10,7 +24,7 @@ class Profile(models.Model):
                 User,
                 on_delete=models.CASCADE,
             )
-
+    location = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,related_name='profile',null=True)
     # def save_profile(self):
     #     return self.save()
 
@@ -32,3 +46,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username}'
+
+
+
+

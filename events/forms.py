@@ -16,7 +16,7 @@ class UserRegisterForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['nat_id']
+        fields = ['nat_id','location']
 
 
 # class ProjectForm(forms.ModelForm):

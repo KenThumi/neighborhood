@@ -21,17 +21,23 @@
                     <p>{{user.profile.nat_id}}</p> 
                     </span>
                 </li>
+
+                <li class="list-group-item">
+                   Location <span class="text-muted">
+                    <p>{{user.profile.location}}</p> 
+                    </span>
+                </li>
     
                 {%else%}
                 
                     <li class="list-group-item">
-                          <p>No ID given</p>
+                          <p>No ID and Neighborhood given</p>
                     </li>
                     <br>
                     <li class="list-group-item ">
                         <a href="{% url 'addprof' user.id%}" class="btn btn-sm btn-outline-warning mx-auto d-block my-2">
                             <i class="fas fa-plus-circle mr-1" aria-hidden="true"></i>
-                            Add National ID </a>
+                            Add National ID and Neighborhood </a>
                     </li>
                 
     
