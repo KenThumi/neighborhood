@@ -45,11 +45,12 @@ def addprof(request,id):
 
             profile = Profile(
                               nat_id=form.cleaned_data['nat_id'],
+                              location=form.cleaned_data['location'],
                               user=request.user)
 
             profile.save()
 
-            messages.success(request, 'Successful nat. ID creation.')
+            messages.success(request, 'Successful nat. ID/neighborhood creation.')
             return redirect('profile')
 
     ctx = {'form':form}
