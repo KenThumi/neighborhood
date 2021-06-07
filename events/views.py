@@ -1,11 +1,11 @@
 from events.models import Business, Post, Profile
-from events.forms import PostForm, ProfileForm, UserRegisterForm
+from events.forms import PostForm, ProfileForm, UpdateLocationForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+@login_required
 def home(request):
     posts = []
 
@@ -116,3 +116,25 @@ def createPost(request):
             return redirect('home')
 
     return render(request,'postform.html',{'form':form})
+
+
+def updateLocation(request):
+    if request.method == 'POST':
+        form = UpdateLocationForm(request.POST)
+
+        if form.is_valid():
+
+            request.user.profile.location = form.cleaned_data['location']
+
+            request.user.profile.save()
+
+            messages.success(request, 'Successful update.')
+            return redirect('profile')
+
+
+    form = UpdateLocationForm(instance=request.user.profile)
+
+    ctx = {'form':form}
+
+    return render(request,'profile/updatelocation.html',ctx)
+

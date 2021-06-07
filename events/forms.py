@@ -25,7 +25,7 @@ class PostForm(forms.ModelForm):
         exclude = ['user']
 
 
-# class ReviewForm(forms.ModelForm):
-#     class Meta:
-#         model = Review
-#         exclude = ['project','count']
+class UpdateLocationForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['location']

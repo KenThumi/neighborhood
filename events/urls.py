@@ -12,6 +12,7 @@ urlpatterns = [
     path('police', views.getPoliceDept, name='police'),
     path('health', views.getHealthDept, name='health'),
     path('depts', views.getDepts, name='depts'),
-    path('postform',views.createPost, name='postform')
+    path('postform',views.createPost, name='postform'),
+    path('updatelocation', views.updateLocation, name='updatelocation')
 
 ]

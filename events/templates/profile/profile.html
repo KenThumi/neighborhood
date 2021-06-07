@@ -23,9 +23,16 @@
                 </li>
 
                 <li class="list-group-item">
-                   Location <span class="text-muted">
-                    <p>{{user.profile.location.name}},{{user.profile.location.location}}</p> 
-                    </span>
+                   Neighborhood, Location <div class="text-muted">
+                    <p>{{user.profile.location.name}},{{user.profile.location.location}}
+
+                        <a class="float-right" href="{% url 'updatelocation' %}">
+                            Update location <i class="fas fa-user-edit ml-1" aria-hidden="true"></i>
+                        </a>
+                    </p> 
+                   </div>
+
+                 
                 </li>
     
                 {%else%}
