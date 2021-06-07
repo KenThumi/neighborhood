@@ -53,6 +53,9 @@ class Business(models.Model):
     email= models.EmailField()
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='businesses')
     location = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,related_name='businesses')
+
+    class Meta:
+        ordering = ["-pk"]
     
     
     def __str__(self):
@@ -62,6 +65,9 @@ class Business(models.Model):
 class Post(models.Model):
     description = models.TextField()
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='posts')
+
+    class Meta:
+        ordering = ["-pk"]
 
     def __str__(self):
         return f'{self.description}'

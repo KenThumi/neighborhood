@@ -1,4 +1,4 @@
-from events.models import Business, Profile
+from events.models import Business, Post, Profile
 from events.forms import PostForm, ProfileForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
@@ -7,10 +7,20 @@ from django.contrib import messages
 
 
 def home(request):
+    posts = []
 
+    if hasattr(request.user, 'profile'):
+        posts= Post.objects.filter(user__profile__location=request.user.profile.location)
 
+    else:
+        messages.warning(request, 'Kindly set your neighborhood/location and National ID.')
+        return redirect('addprof')
 
-    return render(request, 'index.html')
+    # print(posts.count())
+
+    ctx = {'posts':posts}
+
+    return render(request, 'index.html',ctx)
 
 
 def register(request):
@@ -35,7 +45,7 @@ def profile(request):
     return render(request,'profile/profile.html', {'user':user})
 
 
-def addprof(request,id):
+def addprof(request):
     form = ProfileForm()
 
     if request.method == 'POST':
