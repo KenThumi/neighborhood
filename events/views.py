@@ -1,5 +1,5 @@
 from events.models import Business, Profile
-from events.forms import ProfileForm, UserRegisterForm
+from events.forms import PostForm, ProfileForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
@@ -88,3 +88,21 @@ def getDepts(request):
     
 
     return render(request,'depts.html',ctx)
+
+
+def createPost(request):
+    form = PostForm()
+    
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+
+            post.save()
+
+            messages.success(request, 'Successful post creation.')
+            return redirect('home')
+
+    return render(request,'postform.html',{'form':form})

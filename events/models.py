@@ -59,4 +59,12 @@ class Business(models.Model):
         return f'{self.name}'
 
 
+class Post(models.Model):
+    description = models.TextField()
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='posts')
+
+    def __str__(self):
+        return f'{self.description}'
+
+
 

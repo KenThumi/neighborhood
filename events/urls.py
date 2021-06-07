@@ -11,6 +11,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('police', views.getPoliceDept, name='police'),
     path('health', views.getHealthDept, name='health'),
-    path('depts', views.getDepts, name='depts')
+    path('depts', views.getDepts, name='depts'),
+    path('postform',views.createPost, name='postform')
 
 ]
