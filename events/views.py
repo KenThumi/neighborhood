@@ -1,3 +1,4 @@
+from events.email import send_welcome_email
 from events.models import Business, Post, Profile
 from events.forms import PostForm, ProfileForm, UpdateLocationForm, UserRegisterForm
 from django.shortcuts import redirect, render
@@ -32,19 +33,21 @@ def register(request):
         if form.is_valid():
             form.save()
 
+            send_welcome_email(form.cleaned_data['username'], form.cleaned_data['email'])
+
             messages.success(request, 'Successful Registration.')
 
             return redirect('home')
 
     return render(request,'registration/register.html',{'form':form})
 
-# @login_required
+@login_required
 def profile(request):
     user = request.user
 
     return render(request,'profile/profile.html', {'user':user})
 
-
+@login_required
 def addprof(request):
     form = ProfileForm()
 
@@ -67,7 +70,7 @@ def addprof(request):
 
     return render(request,'profile/update.html',ctx)
 
-
+@login_required
 def getPoliceDept(request):
     dpt = Business.objects.filter(name__icontains='police',location=request.user.profile.location).first()
 
@@ -78,7 +81,7 @@ def getPoliceDept(request):
     return render(request,'dept.html',ctx)
 
 
-
+@login_required
 def getHealthDept(request):
     dpt = Business.objects.filter(name__icontains='health',location=request.user.profile.location).first()
 
@@ -89,7 +92,7 @@ def getHealthDept(request):
     return render(request,'dept.html',ctx)
 
 
-
+@login_required
 def getDepts(request):
     dpts = Business.objects.filter(location=request.user.profile.location)
 
@@ -99,7 +102,7 @@ def getDepts(request):
 
     return render(request,'depts.html',ctx)
 
-
+@login_required
 def createPost(request):
     form = PostForm()
     
@@ -117,7 +120,7 @@ def createPost(request):
 
     return render(request,'postform.html',{'form':form})
 
-
+@login_required
 def updateLocation(request):
     if request.method == 'POST':
         form = UpdateLocationForm(request.POST)

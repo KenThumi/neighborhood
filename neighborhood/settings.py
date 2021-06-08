@@ -88,6 +88,7 @@ WSGI_APPLICATION = 'neighborhood.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+MODE=config("MODE", default="dev")
 if config('MODE')=="dev":
    DATABASES = {
        'default': {
@@ -163,3 +164,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL='/'
 LOGOUT_REDIRECT_URL='login'
 LOGIN_URL = 'login'
+
+# Email configurations remember to install python-decouple
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
