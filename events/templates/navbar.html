@@ -23,6 +23,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{%url 'health'%}">Health Dept. </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'neighbours'%}">Neighbours </a>
+        </li>
       </ul>
       {% if user.is_authenticated %}
       <form class="form-inline my-2 my-lg-0 mx-md-auto" method="POST" action="{% url 'search' %}">

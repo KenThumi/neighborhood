@@ -14,6 +14,7 @@ urlpatterns = [
     path('depts', views.getDepts, name='depts'),
     path('postform',views.createPost, name='postform'),
     path('updatelocation', views.updateLocation, name='updatelocation'),
-    path('search', views.search, name='search')
+    path('search', views.search, name='search'),
+    path('neighbours', views.getNeighbours, name='neighbours')
 
 ]

@@ -1,0 +1,49 @@
+{%extends "base.html"%}
+
+{% block content %}
+{{block.super}}
+
+<div class="container my-2">
+
+    <div class="row">
+     
+      
+         <!-- peoplr -->
+        <div class="col-md-8 offset-md-2">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Neighborhood</th>
+                    <th scope="col">Location</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for person in persons %}
+                  <tr>
+                    <th scope="row"> {{ forloop.counter }}</th>
+                    <td>{{person.username | title}}</td>
+                    <td>{{person.email}}</td>
+                    <td>{{person.profile.location.name}}</td>
+                    <td>{{person.profile.location.location}}</td>
+                  </tr>
+                    {%empty%} 
+                     <tr> No persons registered in this neighborhood</tr>
+                    {%endfor%}
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+   
+
+</div>
+<!-- copyrights -->
+<div class="mt-1 text-center">
+    <small class="text-center">
+    Copyright © 2021 Neighborhood Inc. All Rights Reserved
+    </small>
+</div>
+{% endblock %}

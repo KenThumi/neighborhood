@@ -4,6 +4,7 @@ from events.forms import PostForm, ProfileForm, UpdateLocationForm, UserRegister
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 
 @login_required
@@ -157,3 +158,12 @@ def search(request):
 
     return redirect('home')
 
+
+@login_required
+def getNeighbours(request):
+    persons = User.objects.filter(profile__location = request.user.profile.location).exclude(pk=request.user.id)
+
+
+    ctx = {'persons':persons}
+
+    return render(request,'people.html',ctx)
