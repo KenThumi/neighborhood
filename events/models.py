@@ -21,6 +21,14 @@ class Neighborhood(models.Model):
     def find_neigborhood(cls,neigborhood_id):
         return cls.objects.filter(pk=neigborhood_id)
 
+    @classmethod
+    def update_neighborhood(cls,update_details,id):
+        return cls.objects.filter(id=int(id)).update(name=update_details['name'],
+                                               location=update_details['location'])
+    
+
+
+
 
     class Meta:
         ordering = ["-pk"]

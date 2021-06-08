@@ -46,3 +46,15 @@ class NeighborhoodTestClass(TestCase):
         results = Neighborhood.find_neigborhood(self.neighborhood.id)
 
         self.assertTrue(len(results)>0)
+
+    def test_update_neighborhood(self):
+        self.admin.save()
+        self.neighborhood.create_neighborhood()
+
+        update_details = {'name':'new name','location':'new location'}
+
+        Neighborhood.update_neighborhood(update_details,self.neighborhood.id)
+
+        self.obj = Neighborhood.objects.get(pk=self.neighborhood.id)
+
+        self.assertEqual(self.obj.name,'new name')
