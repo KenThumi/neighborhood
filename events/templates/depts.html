@@ -3,26 +3,45 @@
 {% block content %}
 {{block.super}}
 
-<div class="container-fluid my-2">
+<div class="container my-2">
 
+    <div class="row">
+         <!-- search results -->
+         {% if search_results %}
+         <div class="col-12 my-1">
+             <h4 class="text-center">
+                     {{search_results}}
+                 </h4>
+         </div>
+         {%endif%}
 
-    <ul class="list-group mt-2">
-        {% for dpt in dpts %}
-        <li class="list-group-item my-1">
-            Name: <strong>
-                {{ dpt.name }}
-            </strong>
-            <hr>
-            Email: <strong>
-                {{ dpt.email }}
-            </strong>
-                <hr>
-            Neighborhood: <strong>
-                {{ dpt.location.name }},{{ dpt.location.location }}
-            </strong>
-        </li>
-        {% endfor %}
-    </ul>
+         <!-- businesses -->
+        <div class="col-md-8 offset-md-2">
+            <ul class="list-group mt-2">
+                {% for dpt in dpts %}
+                <li class="list-group-item my-1">
+                    Name: <strong>
+                        {{ dpt.name }}
+                    </strong>
+                    <hr>
+                    Email: <strong>
+                        {{ dpt.email }}
+                    </strong>
+                        <hr>
+                    Neighborhood: <strong>
+                        {{ dpt.location.name }},{{ dpt.location.location }}
+                    </strong>
+                </li>
+                {%empty%}
+                <li class="list-group-item my-1">
+                    No Businesses in your neighborhood
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+   
 
 </div>
 <!-- copyrights -->

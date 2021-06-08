@@ -137,4 +137,20 @@ def updateLocation(request):
     ctx = {'form':form}
 
     return render(request,'profile/updatelocation.html',ctx)
+    
+
+@login_required
+def search(request):
+
+    if request.method=='POST':
+
+        needle = request.POST['search']
+
+        depts=Business.objects.filter(name__icontains=needle, location=request.user.profile.location)
+
+        ctx = {'dpts':depts, 'search_results':f'Search Results ({depts.count()})'}
+
+        return render(request,'depts.html',ctx)
+
+    return redirect('home')
 
