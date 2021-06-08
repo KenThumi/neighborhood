@@ -9,6 +9,12 @@ class Neighborhood(models.Model):
     admin = models.ForeignKey(User,on_delete=models.CASCADE,related_name='locations')
 
 
+    def create_neighborhood(self):
+        return self.save()
+
+    def delete_neighborhood(self):
+        return self.delete()
+
     class Meta:
         ordering = ["-pk"]
 
