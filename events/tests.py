@@ -37,3 +37,12 @@ class NeighborhoodTestClass(TestCase):
         neighborhoods = Neighborhood.objects.all()
 
         self.assertTrue(len(neighborhoods)==0)
+
+
+    def test_find_neigborhood(self):
+        self.admin.save()
+        self.neighborhood.create_neighborhood()
+
+        results = Neighborhood.find_neigborhood(self.neighborhood.id)
+
+        self.assertTrue(len(results)>0)

@@ -12,8 +12,15 @@ class Neighborhood(models.Model):
     def create_neighborhood(self):
         return self.save()
 
+
     def delete_neighborhood(self):
         return self.delete()
+
+
+    @classmethod
+    def find_neigborhood(cls,neigborhood_id):
+        return cls.objects.filter(pk=neigborhood_id)
+
 
     class Meta:
         ordering = ["-pk"]
