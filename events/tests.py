@@ -136,18 +136,18 @@ class BusinessTestClass(TestCase):
 
 
 
-    # def test_update_neighborhood(self):
-    #     self.admin.save()
-    #     self.neighborhood.create_neighborhood()
-    #     self.occupant.save()
+    def test_update_business(self):
+        self.user.save()
+        self.neighborhood.save()
+        self.business.create_business()
 
-    #     update_details = {'name':'new name','location':'new location'}
+        update_details = {'name':'new name','location':self.neighborhood, 'email':'newemail@gm.com'}
 
-    #     Neighborhood.update_neighborhood(update_details,self.neighborhood.id)
+        Business.update_business(update_details,self.business.id)
 
-    #     self.obj = Neighborhood.objects.get(pk=self.neighborhood.id)
+        self.obj = Business.objects.get(pk=self.business.id)
 
-    #     self.assertEqual(self.obj.name,'new name')
+        self.assertEqual(self.obj.email,'newemail@gm.com')
 
 
     # def test_update_occupant(self):

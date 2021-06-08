@@ -82,6 +82,14 @@ class Business(models.Model):
     def find_business(cls,id):
         return cls.objects.filter(pk=id)
 
+    
+    @classmethod
+    def update_business(cls,update_details,id):
+        return cls.objects.filter(id=int(id)).update(name=update_details['name'],
+                                               location=update_details['location'],
+                                               email=update_details['email'])
+    
+
 
     class Meta:
         ordering = ["-pk"]
