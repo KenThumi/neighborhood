@@ -25,6 +25,13 @@ class Neighborhood(models.Model):
     def update_neighborhood(cls,update_details,id):
         return cls.objects.filter(id=int(id)).update(name=update_details['name'],
                                                location=update_details['location'])
+
+
+    @classmethod
+    def update_location(cls,update_details,id):
+        neiborhood = cls.objects.get(id=int(id))
+        return cls.objects.filter(id=int(id)).update(name=update_details['name'],
+                                               location=update_details['location'])
     
 
 
@@ -46,20 +53,6 @@ class Profile(models.Model):
                 on_delete=models.CASCADE,
             )
     location = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,related_name='profile',null=True)
-    # def save_profile(self):
-    #     return self.save()
-
-
-    # @classmethod
-    # def update_profile(cls,update_details,id):
-    #     return cls.objects.filter(id=int(id)).update(profile_photo=update_details['profile_photo'],
-    #                                            bio=update_details['bio'],
-    #                                            contact= update_details['contact'],
-    #                                            user=update_details['user'])
-
-    # def delete_profile(self):
-    #     return self.delete()
-
 
     class Meta:
         ordering = ["-pk"]
@@ -74,6 +67,21 @@ class Business(models.Model):
     email= models.EmailField()
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='businesses')
     location = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,related_name='businesses')
+
+
+
+    def create_business(self):
+        return self.save()
+
+
+    def delete_business(self):
+        return self.delete()
+
+
+    @classmethod
+    def find_business(cls,id):
+        return cls.objects.filter(pk=id)
+
 
     class Meta:
         ordering = ["-pk"]
